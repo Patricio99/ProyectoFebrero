@@ -1,0 +1,20 @@
+.card-deck .card-generic {
+  display: block;
+}
+
+.card-generic {
+  display: none;
+}
+
+.product-image {
+  width:200px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.product-image  img {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 200px;
+}
