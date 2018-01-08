@@ -1,5 +1,5 @@
 <?php
-  include "./index1.php";
+  include "./indextop.php";
 ?>
   <div>
       <form method="post" action="<?=$_SERVER['PHP_SELF']?>" enctype="multipart/form-data">
@@ -18,5 +18,5 @@
       </form>
   </div>
   <?php
-    include "./index2.php";
+    include "./indexdown.php";
   ?>
