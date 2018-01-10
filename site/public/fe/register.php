@@ -35,6 +35,13 @@ if ($todoOK == "si") {
 
 
 if ($todoOK == "si") {
+
+  // El mensaje
+  $mensaje = "¡Bienvenido a ProyectoFebrero!\r\nUsted se ha registrado satisfactoriamente.";
+
+  // Enviarlo
+  mail($email, 'Registración ProyectoFebrero', $mensaje);
+
   header('Location: login.php');
 }
 else{

@@ -1,7 +1,7 @@
 <?php
-  include "./index1.php";
+  include "./indextop.php";
 ?>
 
-  <?php
-    include "./index2.php";
-  ?>
+<?php
+  include "./indexdown.php";
+?>

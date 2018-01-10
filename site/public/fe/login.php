@@ -22,7 +22,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT mail, contraseña FROM usuarios";
+$sql = "SELECT mail, contrasena FROM usuarios";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -55,7 +55,7 @@ $conn->close();
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput2">Password</label>
-          <input type="text" class="form-control" name="password" placeholder="Password" required>
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
         </div>
         <div>
           <button type="submit" class="btn btn-primary">Log In</button>
