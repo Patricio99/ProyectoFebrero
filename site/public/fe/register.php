@@ -25,12 +25,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO usuarios (mail, contraseña, unid)
+$sql = "INSERT INTO usuarios (mail, contrasena, unid)
 VALUES ('" . $email . "', '" . $password . "', '" . $unid . "')";
-
 if ($todoOK == "si") {
   $result = $conn->query($sql);
-
 } else {
     echo $conn->error;
 }
