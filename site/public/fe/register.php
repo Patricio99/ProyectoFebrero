@@ -1,6 +1,6 @@
 <!-- VALIDATION -->
 <?php
-$email = $password = $unid = "";
+$nombre = $apellido = $email = $password = $unid = "";
 $todoOK = "no";
 
 function test_input($data) {
@@ -12,6 +12,8 @@ function test_input($data) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $nombre = test_input($_POST["nombre"]);
+  $apellido = test_input($_POST["apellido"]);
   $email = test_input($_POST["email"]);
   $password = test_input($_POST["password"]);
   $unid = $_POST["unid"];
@@ -25,8 +27,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO usuarios (mail, contrasena, unid)
-VALUES ('" . $email . "', '" . $password . "', '" . $unid . "')";
+$sql = "INSERT INTO usuarios (nombre, apellido, mail, contrasena, unid)
+VALUES ('" . $nombre . "', '" . $apellido . "', '" . $email . "', '" . $password . "', '" . $unid . "')";
 if ($todoOK == "si") {
   $result = $conn->query($sql);
 } else {
@@ -58,6 +60,14 @@ $conn->close();
 ?>
   <div>
       <form method="post" action="<?=$_SERVER['PHP_SELF']?>" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Nombre</label>
+          <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Apellido</label>
+          <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
+        </div>
         <div class="form-group">
           <label for="formGroupExampleInput2">Email</label>
           <input type="text" class="form-control" name="email" placeholder="Email" required>

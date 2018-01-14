@@ -8,16 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="listaproductos.php">Mis recursos</a>
+          <a class="nav-link" href="recursos.php">Mis recursos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaproductos.php">Solicitudes</a>
+          <a class="nav-link" href="peticiones.php">Peticiones</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaproductos.php">Añadir Amigos</a>
+          <a class="nav-link" href="friends.php">Amigos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="listaproductos.php">Settings</a>
+          <a class="nav-link" href="settings.php">Settings</a>
         </li>
       </ul>
     </div>
