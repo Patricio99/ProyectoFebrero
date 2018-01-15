@@ -5,7 +5,6 @@ function render() {
   ?>
 
   <script>
-
     getCategoryList().then((category) => {
       var dropDownCat = document.getElementById("dropDownCat");
 
