@@ -1,5 +1,5 @@
 <?php
-$search = $name = $surname = $busca3 = "";
+$search = $name = $surname = $busca3 = $nombut = "";
 $correcto = "";
 
 function test_input($data) {
@@ -30,6 +30,7 @@ if ($result->num_rows > 0) {
           $name = $row["nombre"];
           $surname = $row["apellido"];
           $busca3 = $row["unid"];
+          $nombut = "Añadir amigo";
           $correcto = "si";
         }
     }
@@ -50,7 +51,7 @@ $conn->close();
 ?>
 <div class="container" style="margin-top: 5%;">
     <div class="col-md-6 col-md-offset-3">
-      <form method="post" action="<?=$_SERVER['PHP_SELF']?>" enctype="multipart/form-data">
+      <form method="post" action="<?=$_SERVER['PHP_SELF']?>?id=<?php echo $result[0]; ?>" enctype="multipart/form-data">
             <div class="row">
                 <h2 class="text-center">Introduce UniqueID</h2>
                 <div class="form-group">
@@ -70,7 +71,10 @@ $conn->close();
   <div class="card-block">
     <h4 class="card-title"><?php echo $name . " " . $surname; ?></h4>
     <p class="card-text"><?php echo $busca3; ?></p>
-
+    <form method="post" action="addfriendbut.php?id=<?php echo $result[0]; ?>" enctype="multipart/form-data">
+      <input type="hidden" name="amigo" value="<?php echo $busca3; ?>">
+      <button class="btn btn-link" type="submit"><?php echo $nombut; ?></button>
+    </form>
   </div>
 </div>
 <?php

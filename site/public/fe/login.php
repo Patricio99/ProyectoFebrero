@@ -1,6 +1,6 @@
 <!-- VALIDATION -->
 <?php
-$email = $password = "";
+$email = $password = $idurl = "";
 $correcto = "no";
 
 function test_input($data) {
@@ -22,13 +22,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT mail, contrasena FROM usuarios";
+$sql = "SELECT mail, contrasena, unid FROM usuarios";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        if (strcmp($email, $row["mail"]) == 0 && strcmp($password, $row["contraseña"])) {
+        if (strcmp($email, $row["mail"]) == 0 && strcmp($password, $row["contrasena"]) == 0) {
+          $idurl = $row["unid"];
           $correcto = "si";
         }
     }
@@ -36,7 +37,7 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 if ($correcto == "si") {
-  header('Location: dashboard.php');
+  header('Location: dashboard.php?id=' . $idurl);
 }
 else {
 }
