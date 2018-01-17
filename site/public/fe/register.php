@@ -1,7 +1,38 @@
 <!-- VALIDATION -->
 <?php
-$nombre = $apellido = $email = $password = $unid = "";
-$todoOK = "no";
+$nombre = $apellido = $email = $password = $unid = NULL;
+$todoOK = NULL;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $email = test_email($_POST["email"]);
+
+
+
+}
+function test_email($data){
+    include '../be/apis/conn.php';
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT mail FROM usuarios";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            if (strcmp($data, $row["email"]) == 0) {
+                $data = NULL;
+                echo "entró";
+                
+            }
+            else {
+            }
+        }
+    } else {
+    }
+    $conn->close();
+}
 
 function test_input($data) {
   $data = trim($data);
@@ -10,38 +41,50 @@ function test_input($data) {
 
   return $data;
 }
+if (isset($email)) {
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = test_input($_POST["nombre"]);
+    $apellido = test_input($_POST["apellido"]);
+    $email = test_input($_POST["email"]);
+    $password = test_input($_POST["password"]);
+    $unid = $_POST["unid"];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $nombre = test_input($_POST["nombre"]);
-  $apellido = test_input($_POST["apellido"]);
-  $email = test_input($_POST["email"]);
-  $password = test_input($_POST["password"]);
-  $unid = $_POST["unid"];
-
-  $todoOK = "si";
+    $todoOK = "si";
+    echo "_" . $todoOK;
+  }
+  else {
+  }
 }
+if (isset($todoOK)) {
+  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  } else {
+    $todoOK = "mailmal";
+  }
+  include '../be/apis/conn.php';
 
-include '../be/apis/conn.php';
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "INSERT INTO usuarios (nombre, apellido, mail, contrasena, unid)
-VALUES ('" . $nombre . "', '" . $apellido . "', '" . $email . "', '" . $password . "', '" . $unid . "')";
-if ($todoOK == "si") {
-  $result = $conn->query($sql);
-} else {
-    echo $conn->error;
-}
+  $sql = "INSERT INTO usuarios (nombre, apellido, mail, contrasena, unid)
+  VALUES ('" . $nombre . "', '" . $apellido . "', '" . $email . "', '" . $password . "', '" . $unid . "')";
+  if ($todoOK == "si") {
+    $result = $conn->query($sql);
+  } else {
+      echo $conn->error;
+  }
 
 
-if ($todoOK == "si") {
-  header('Location: login.php');
-}
-else{
-}
+  if ($todoOK == "si") {
+    header('Location: login.php');
+  }
+  else if($todoOK == "no"){
+  }
+  else if($todoOK == "mailmal"){
+    echo '<script type="text/javascript">alert("Email incorrecto!");</script>';
+  }
 $conn->close();
+}
 
 
   ?>
