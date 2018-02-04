@@ -29,7 +29,7 @@ $sql = "INSERT INTO amigos (iduser, idfriend)
 VALUES ('" . $usersession . "', '" . $amigo . "')";
 if ($todoOK == "si") {
   $result = $conn->query($sql);
-  header('Location: friends.php?id=' . $usersession);  
+  header('Location: friends.php?id=' . $usersession);
 } else {
     echo $conn->error;
 }

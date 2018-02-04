@@ -1,4 +1,7 @@
 <?php
+  include "./indexlogged.php";
+?>
+<?php
 $search = $name = $surname = $busca3 = $nombut = "";
 $correcto = "";
 
@@ -26,7 +29,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        if (strcmp($search, $row["unid"]) == 0) {
+        if (strcmp($search, $row["unid"]) == 0 && strcmp($search, $url[0]) != 0) {
           $name = $row["nombre"];
           $surname = $row["apellido"];
           $busca3 = $row["unid"];
@@ -39,19 +42,16 @@ if ($result->num_rows > 0) {
 }
 
 if ($correcto == "si") {
-  // header('Location: friends.php');
+//  header('Location: friends.php');
 }
 else {
 }
 $conn->close();
 
 ?>
-<?php
-  include "./indexlogged.php";
-?>
 <div class="container" style="margin-top: 5%;">
     <div class="col-md-6 col-md-offset-3">
-      <form method="post" action="<?=$_SERVER['PHP_SELF']?>?id=<?php echo $result[0]; ?>" enctype="multipart/form-data">
+      <form method="post" action="<?=$_SERVER['PHP_SELF']?>?id=<?php echo $url[0]; ?>" enctype="multipart/form-data">
             <div class="row">
                 <h2 class="text-center">Introduce UniqueID</h2>
                 <div class="form-group">
@@ -71,7 +71,7 @@ $conn->close();
   <div class="card-block">
     <h4 class="card-title"><?php echo $name . " " . $surname; ?></h4>
     <p class="card-text"><?php echo $busca3; ?></p>
-    <form method="post" action="addfriendbut.php?id=<?php echo $result[0]; ?>" enctype="multipart/form-data">
+    <form method="post" action="addfriendbut.php?id=<?php echo $url[0]; ?>" enctype="multipart/form-data">
       <input type="hidden" name="amigo" value="<?php echo $busca3; ?>">
       <button class="btn btn-link" type="submit"><?php echo $nombut; ?></button>
     </form>
