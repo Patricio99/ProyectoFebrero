@@ -1,7 +1,8 @@
 <!-- VALIDATION -->
 <?php
-$email = $password = $idurl = "";
-$correcto = "no";
+
+$email = $password = $idurl = NULL;
+$correcto = NULL;
 
 function test_input($data) {
   $data = trim($data);
@@ -32,14 +33,21 @@ if ($result->num_rows > 0) {
           $idurl = $row["unid"];
           $correcto = "si";
         }
+        else {
+          $correcto = "no";
+        }
     }
 } else {
     echo "0 results";
 }
 if ($correcto == "si") {
-  header('Location: dashboard.php?id=' . $idurl);
+  session_start();
+  $_SESSION["session"] = $idurl;
+  header('Location: dashboard.php');
 }
-else {
+else if(isset($email) && $correcto == "no"){
+  echo '<script type="text/javascript">alert("¡Datos incorrectos!");</script>';
+
 }
 $conn->close();
 ?>
