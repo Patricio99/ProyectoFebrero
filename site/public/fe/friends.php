@@ -2,7 +2,7 @@
   include "./indexlogged.php";
 ?>
 <div class="card-block p-3">
-    <a href="addfriend.php?id=<?php echo $result[0]; ?>"><button type="button" class="btn btn-success w-25 h-25">+ </br> Add Friends</button></a>
+    <a href="addfriend.php?id=<?php echo $url[0]; ?>"><button type="button" class="btn btn-success w-25 h-25">+ </br> Add Friends</button></a>
 </div>
 <div class="card" style="width: 20rem;">
   <div class="card-block">

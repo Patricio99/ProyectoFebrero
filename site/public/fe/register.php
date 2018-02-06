@@ -6,8 +6,6 @@ $todoOK = NULL;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = test_email($_POST["email"]);
 
-
-
 }
 function test_email($data){
     include '../be/apis/conn.php';
@@ -21,19 +19,14 @@ function test_email($data){
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            if (strcmp($data, $row["email"]) == 0) {
+            if (strcmp($data, $row["mail"]) == 0) {
                 $data = NULL;
-                echo "entró";
-                
-            }
-            else {
             }
         }
-    } else {
     }
+    return $data;
     $conn->close();
 }
-
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -50,11 +43,9 @@ if (isset($email)) {
     $unid = $_POST["unid"];
 
     $todoOK = "si";
-    echo "_" . $todoOK;
-  }
-  else {
   }
 }
+
 if (isset($todoOK)) {
   if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
   } else {
@@ -83,6 +74,7 @@ if (isset($todoOK)) {
   else if($todoOK == "mailmal"){
     echo '<script type="text/javascript">alert("Email incorrecto!");</script>';
   }
+
 $conn->close();
 }
 
@@ -118,7 +110,7 @@ $conn->close();
         </div>
         <div>
           <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="button" onclick="javascript:history.go(-1)" class="btn btn-primary">Regresar</button>
+          <a href="./login.php"><button type="button" class="btn btn-primary">Regresar</button></a>
         </div>
       </form>
   </div>
