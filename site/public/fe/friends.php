@@ -1,5 +1,13 @@
 <?php
   include "./indexlogged.php";
+
+  include '../be/apis/conn.php';
+
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  $sql= "SELECT id, IF(`iduser`= 1, `idfriend`, `iduser`) AS idfriend FROM `amigos` WHERE `iduser`=1 OR `idfriend` = 1"
 ?>
 <div class="card-block p-3">
     <a href="addfriend.php"><button type="button" class="btn btn-success w-25 h-25">+ </br> Add Friends</button></a>

@@ -1,4 +1,6 @@
 <?php
+  include "./indexlogged.php";
+
 $amigo = $todoOK = $usersession = "";
 
 function test_input($data) {
@@ -14,10 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $todoOK = "si";
 }
 
-$c = explode('=',$_SERVER[ 'REQUEST_URI' ]);
-$result = explode('/', end($c));
-
-$usersession = $result[0];
+$usersession = $_SESSION["session"];
 
 include '../be/apis/conn.php';
 
@@ -29,7 +28,7 @@ $sql = "INSERT INTO amigos (iduser, idfriend)
 VALUES ('" . $usersession . "', '" . $amigo . "')";
 if ($todoOK == "si") {
   $result = $conn->query($sql);
-  header('Location: friends.php?id=' . $usersession);
+  header('Location: friends.php');
 } else {
     echo $conn->error;
 }
