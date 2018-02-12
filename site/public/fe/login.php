@@ -33,9 +33,6 @@ if ($result->num_rows > 0) {
           $idurl = $row["unid"];
           $correcto = "si";
         }
-        else {
-          $correcto = "no";
-        }
     }
 } else {
     echo "0 results";
@@ -45,7 +42,7 @@ if ($correcto == "si") {
   $_SESSION["session"] = $idurl;
   header('Location: dashboard.php');
 }
-else if(isset($email) && $correcto == "no"){
+if(isset($email) && $correcto == NULL){
   echo '<script type="text/javascript">alert("¡Datos incorrectos!");</script>';
 
 }
