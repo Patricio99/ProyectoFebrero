@@ -3,7 +3,6 @@
 ?>
 <?php
 $search = $name = $surname = $busca3 = $nombut = "";
-$correcto = "";
 
 function test_input($data) {
   $data = trim($data);
@@ -34,18 +33,32 @@ if ($result->num_rows > 0) {
           $surname = $row["apellido"];
           $busca3 = $row["unid"];
           $nombut = "Añadir amigo";
-          $correcto = "si";
         }
     }
-} else {
-    echo "0 results";
 }
 
-if ($correcto == "si") {
-//  header('Location: friends.php');
-}
-else {
-}
+
+$aidi = $_SESSION["session"];
+
+$sql= "SELECT iduser, idfriend FROM amigos WHERE iduser='" .$aidi. "' OR idfriend='" .$aidi. "'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+      if ($row["iduser"] == $search) {
+        $name = NULL;
+        $surname = NULL;
+        $busca3 = NULL;
+        $nombut = NULL;
+      }else if($row["idfriend"] == $search){
+        $name = NULL;
+        $surname = NULL;
+        $busca3 = NULL;
+        $nombut = NULL;
+      }
+    }
+  }
+
+
 $conn->close();
 
 ?>
