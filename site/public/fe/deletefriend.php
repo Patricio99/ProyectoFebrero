@@ -8,7 +8,7 @@ include '../be/apis/conn.php';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-echo "_" . $urlid[0];
+
 
 $sql = "DELETE FROM amigos WHERE id= '".$urlid[0]."'";
 $result = $conn->query($sql);
