@@ -38,7 +38,16 @@
                   <div class="card-block">
                     <h3 class="card-title"><?php echo $name . " " . $surname; ?></h3>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="<?php echo $key; ?>" class="btn btn-link">Eliminar amigo</a>
+                    <?php
+                    $sql= "SELECT id FROM amigos WHERE iduser='" . $key . "' AND idfriend = '" . $aidi . "' OR idfriend='" . $key . "' AND iduser = '" . $aidi . "' ";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                          $showid = $row["id"];
+                        }
+                      }
+                    ?>
+                    <a href="deletefriend.php?id=<?php echo $showid; ?>" class="btn btn-link">Eliminar amigo</a>
                   </div>
                 </div>
 
