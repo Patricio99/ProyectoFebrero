@@ -26,19 +26,19 @@ if ($result->num_rows > 0) {
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNombre">Nombre</label>
-      <input type="text" class="form-control" id="inputNombre" value="<?php echo $nombre; ?>" disabled>
+      <input type="text" class="form-control" id="inputNombre" value="<?php echo $nombre; ?>" disabled/>
     </div>
     <div class="form-group col-md-6">
       <label for="inputApellido">Apellido</label>
-      <input type="text" class="form-control" id="inputApellido" value="<?php echo $apellido; ?>" disabled>
+      <input type="text" class="form-control" id="inputApellido" value="<?php echo $apellido; ?>" disabled/>
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail">Email</label>
-      <input type="email" class="form-control" value="<?php echo $mail; ?>" id="inputEmail" disabled>
+      <input type="email" class="form-control" value="<?php echo $mail; ?>" id="inputEmail" disabled/>
     </div>
     <div class="form-group col-md-6">
       <label for="inputUnid">Unique ID</label>
-      <input type="text" class="form-control" id="inputUnid" value="<?php echo $unid; ?>" disabled>
+      <input type="text" class="form-control" id="inputUnid" value="<?php echo $unid; ?>" disabled/>
     </div>
   </div>
 </form>
