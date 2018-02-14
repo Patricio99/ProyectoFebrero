@@ -48,6 +48,7 @@
                       }
                     ?>
                     <a href="deletefriend.php?id=<?php echo $showid; ?>" class="btn btn-link">Eliminar amigo</a>
+                    <a href="friendsource.php?id=<?php echo $showid; ?>" class="btn btn-link">Ver recursos</a>
                   </div>
                 </div>
 
