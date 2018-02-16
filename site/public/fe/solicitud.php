@@ -1,12 +1,17 @@
 <?php
   include "./indexlogged.php";
 
-$c = explode('=',$_SERVER[ 'REQUEST_URI' ]);
-$urlid = explode('/', end($c));
+  $idsolicitado = $finicio = $ffin = $hinicio = $hfin = $id1 = $id2 = $show1 = $show2 = "";
 
-echo "string" . $urlid[0] . $urlid[1];
 
-$idsolicitado = $finicio = $ffin = $hinicio = $hfin = "";
+if(isset($_GET['recursoId']) && isset($_GET['userId'])){
+  $id1 = $_GET['recursoId'];
+  $id2 = $_GET['userId'];
+
+  echo "_" . $id1;
+}
+
+
 
 if (!empty($_POST))
 {
@@ -19,10 +24,12 @@ if (!empty($_POST))
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $finicio = test_input($_POST["Nombre"]);
-    $ffin = test_input($_POST["Unid"]);
-    $hinicio = test_input($_POST["Unid"]);
-    $finicio = test_input($_POST["Unid"]);
+    $finicio = test_input($_POST["fInicio"]);
+    $ffin = test_input($_POST["fFin"]);
+    $hinicio = test_input($_POST["hInicio"]);
+    $hfin = test_input($_POST["hFin"]);
+    $show1 = test_input($_POST["id1"]);
+    $show2 = test_input($_POST["id2"]);
   }
 
 
@@ -32,15 +39,17 @@ if (!empty($_POST))
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql= "INSERT INTO solicitudes (idsolicitante, idrecurso, idsolicitado, fInicio, fFin, hInicio, hFin)
-  VALUES ('" .$_SESSION["session"] ."','". $urlid[0] ."', '" . $urlid[1] . "', '". $finicio ."','". $ffin ."', '". $hinicio ."', '". $hfin ."')";
+  $sql= "INSERT INTO solicitudes (idsolicitante, idrecurso, idsolicitado, fInicio, fFin, hInicio, hFin, respuesta)
+  VALUES ('" .$_SESSION["session"] ."','". $show1 ."', '" . $show2 . "', '". $finicio ."','". $ffin ."', '". $hinicio ."', '". $hfin ."', '" ."". "')";
   $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-  }
+
   $conn->close();
 }
 ?>
-<form>
+<form method="post" action="<?= $_SERVER['PHP_SELF']?>" enctype="multipart/form-data">
+  <input type="text" value="<?php echo $id1; ?>" name="id1"/>
+  <input type="text" value="<?php echo $id2; ?>" name="id2"/>
+
   <div class="form-group">
     <label for="exampleFormControlInput1">Seleccione fecha y hora para el uso del recurso</label></br>
     <input type="date" name="fInicio" min="<?php date('Y-m-d') ?>">

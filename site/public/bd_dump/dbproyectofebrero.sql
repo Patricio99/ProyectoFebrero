@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Feb 16, 2018 at 04:22 AM
--- Server version: 5.7.19
--- PHP Version: 5.6.31
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-02-2018 a las 14:45:57
+-- Versión del servidor: 5.7.9
+-- Versión de PHP: 5.6.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbproyectofebrero`
+-- Base de datos: `dbproyectofebrero`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `amigos`
+-- Estructura de tabla para la tabla `amigos`
 --
 
 DROP TABLE IF EXISTS `amigos`;
@@ -34,23 +32,19 @@ CREATE TABLE IF NOT EXISTS `amigos` (
   `iduser` varchar(50) NOT NULL,
   `idfriend` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `amigos`
+-- Volcado de datos para la tabla `amigos`
 --
 
 INSERT INTO `amigos` (`id`, `iduser`, `idfriend`) VALUES
-(9, '5a7a0d761a21a', 'admin1'),
-(8, '5a7a0d761a21a', 'admin'),
-(15, 'admin1', 'admin'),
-(16, 'admin1', 'caca'),
-(17, '5a838ed1f23e8', 'admin');
+(21, '5a86e6a354d3a', '5a86e6b0c485e');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recursos`
+-- Estructura de tabla para la tabla `recursos`
 --
 
 DROP TABLE IF EXISTS `recursos`;
@@ -60,19 +54,21 @@ CREATE TABLE IF NOT EXISTS `recursos` (
   `userid` varchar(50) NOT NULL,
   `recursoid` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `recursos`
+-- Volcado de datos para la tabla `recursos`
 --
 
 INSERT INTO `recursos` (`id`, `nombre`, `userid`, `recursoid`) VALUES
-(18, 'Auto', '5a7a0d761a21a', '5a84910ebaa16');
+(22, 'Computadora', '5a86e6a354d3a', '5a86e6e0754fd'),
+(23, 'Celular', '5a86e6a354d3a', '5a86e6f163423'),
+(24, 'Play', '5a86e6b0c485e', '5a86e6fdbfb6f');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `solicitudes`
+-- Estructura de tabla para la tabla `solicitudes`
 --
 
 DROP TABLE IF EXISTS `solicitudes`;
@@ -85,20 +81,24 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
   `fFin` varchar(20) NOT NULL,
   `hInicio` varchar(20) NOT NULL,
   `hFin` varchar(20) NOT NULL,
+  `respuesta` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `solicitudes`
+-- Volcado de datos para la tabla `solicitudes`
 --
 
-INSERT INTO `solicitudes` (`id`, `idsolicitante`, `idrecurso`, `idsolicitado`, `fInicio`, `fFin`, `hInicio`, `hFin`) VALUES
-(1, 'admin', '5a84910ebaa16', 'admin1', '25/02/2017', '25/02/2017', '16:30', '12:30');
+INSERT INTO `solicitudes` (`id`, `idsolicitante`, `idrecurso`, `idsolicitado`, `fInicio`, `fFin`, `hInicio`, `hFin`, `respuesta`) VALUES
+(9, '5a86e6b0c485e', '', '', '2018-02-17', '2018-02-17', '12:30', '14:30', ''),
+(10, '5a86e6b0c485e', '', '', '2018-02-17', '2018-02-17', '01:25', '02:26', ''),
+(11, '5a86e6b0c485e', '', '', '2018-02-17', '2018-02-17', '02:30', '02:45', ''),
+(12, '5a86e6b0c485e', '5a86e6e0754fd', '5a86e6a354d3a', '2018-02-17', '2018-02-17', '11:30', '12:30', 'Permitido');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -110,19 +110,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `contrasena` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `unid` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `mail`, `contrasena`, `unid`) VALUES
-(1, 'admin', 'admin', 'admin@admin.com', 'admin', 'admin'),
-(3, 'Osvaldo', 'Naveira', 'osvaldonaveira@gmail.com', 'admin', '5a7a0d761a21a'),
-(19, 'admin1', 'admin1', 'admin1@admin1.com', 'admin1', 'admin1'),
-(20, 'caca', 'caca', 'caca@caca.com', 'caca', 'caca'),
-(21, 'Federico', 'Naveira', 'federiconaveira@gmail.com', 'admin', '5a838ed1f23e8');
-COMMIT;
+(23, 'papa', 'papa', 'papa@papa.com', 'papa', '5a86e6a354d3a'),
+(24, 'hijo', 'hijo', 'hijo@hijo.com', 'hijo', '5a86e6b0c485e');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
