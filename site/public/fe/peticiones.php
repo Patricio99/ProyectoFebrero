@@ -30,9 +30,9 @@
       <div class="card-block">
         <?php
           $sql= "SELECT nombre FROM recursos WHERE recursoid= '" . $idrec . "'";
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+          $result1 = $conn->query($sql);
+          if ($result1->num_rows > 0) {
+            while($row = $result1->fetch_assoc()) {
               $nombreRec = $row["nombre"];
             }
           }
@@ -40,9 +40,9 @@
         <h3 class="card-title"><?php echo $nombreRec; ?></h3>
         <?php
         $sql= "SELECT nombre, apellido FROM usuarios WHERE unid= '" . $nombre . "'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
+        $result2 = $conn->query($sql);
+        if ($result2->num_rows > 0) {
+          while($row = $result2->fetch_assoc()) {
             $name = $row["nombre"];
             $surname = $row["apellido"];
           }

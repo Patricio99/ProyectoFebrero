@@ -26,14 +26,14 @@ if ($result->num_rows > 0) {
               <h3 class="card-title"><?php echo $nombre; ?></h3>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
               <?php
-              $sql= "SELECT idrecurso, idsolicitado, respuesta FROM solicitudes WHERE idsolicitante='" . $_SESSION["session"] . "'";
-              $result1 = $conn->query($sql);
+              $sql1= "SELECT idrecurso, idsolicitado, respuesta FROM solicitudes WHERE idsolicitante='" . $_SESSION["session"] . "' AND idrecurso= '". $recursoid ."'";
+              $result1 = $conn->query($sql1);
               if ($result1->num_rows > 0) {
-                while($row = $result1->fetch_assoc()) {
+                while($row1 = $result1->fetch_assoc()) {
                   $YaSolicito = "";
-                  $test1 = $row["idrecurso"];
-                  $test2 = $row["idsolicitado"];
-                  $test3 = $row["respuesta"];
+                  $test1 = $row1["idrecurso"];
+                  $test2 = $row1["idsolicitado"];
+                  $test3 = $row1["respuesta"];
                   if ($test1 == $recursoid && $test2 == $userid && $test3 != "") {
                     $YaSolicito = "si";
                   }
