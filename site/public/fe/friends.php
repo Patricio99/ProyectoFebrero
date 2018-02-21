@@ -4,7 +4,7 @@
   include '../be/apis/conn.php';
 
   $toShow[] = NULL;
-  $name = $surname = "";
+  $name = $surname = $email = "";
 
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
@@ -25,19 +25,20 @@
       }
 
       foreach ($toShow as $key) {
-        $sql= "SELECT nombre, apellido FROM usuarios WHERE unid= '" . $key . "'";
+        $sql= "SELECT nombre, apellido, mail FROM usuarios WHERE unid= '" . $key . "'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
               $name = $row["nombre"];
               $surname = $row["apellido"];
+              $email = $row["mail"];
 
             ?>
                 <div class="card" style="width: 20rem;">
                   <div class="card-block">
                     <h3 class="card-title"><?php echo $name . " " . $surname; ?></h3>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text">Email: <?php echo $email; ?></p>
                     <?php
                     $sql= "SELECT id FROM amigos WHERE iduser='" . $key . "' AND idfriend = '" . $aidi . "' OR idfriend='" . $key . "' AND iduser = '" . $aidi . "' ";
                     $result = $conn->query($sql);
