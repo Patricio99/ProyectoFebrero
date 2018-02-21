@@ -5,6 +5,7 @@
   $urlid = explode('/', end($c));
   $nombre = $userid = $recursoid = "";
   $test1 = $test2 = $test3 = "";
+  $YaSolicito = "";
 
 
 
@@ -30,7 +31,7 @@ if ($result->num_rows > 0) {
               $result1 = $conn->query($sql1);
               if ($result1->num_rows > 0) {
                 while($row1 = $result1->fetch_assoc()) {
-                  $YaSolicito = "";
+
                   $test1 = $row1["idrecurso"];
                   $test2 = $row1["idsolicitado"];
                   $test3 = $row1["respuesta"];
@@ -40,7 +41,7 @@ if ($result->num_rows > 0) {
                 }
               }
               if ($YaSolicito != "si") { ?>
-              <a href="solicitud.php?recursoId=<?php echo $recursoid ?>&userId=<?php echo $userid ?>" class="btn btn-link">Solicitar uso</a>
+              <a href="solicitud.php?recursoId=<?php echo $recursoid ?>&userId=<?php echo $userid ?>&nomRec=<?php echo $nombre ?>" class="btn btn-link">Solicitar uso</a>
             <?php
           }else { ?>
             <p class="card-text">Ya solicitó el uso del recurso</p>

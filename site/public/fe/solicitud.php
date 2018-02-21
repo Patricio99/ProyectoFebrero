@@ -1,14 +1,14 @@
 <?php
   include "./indexlogged.php";
 
-  $idsolicitado = $finicio = $ffin = $hinicio = $hfin = $id1 = $id2 = $show1 = $show2 = "";
+  $idsolicitado = $finicio = $ffin = $hinicio = $hfin = $id1 = $id2 = $show1 = $show2 = $show3 = "";
 
 
-if(isset($_GET['recursoId']) && isset($_GET['userId'])){
+if(isset($_GET['recursoId']) && isset($_GET['userId']) && isset($_GET['nomRec'])){
   $id1 = $_GET['recursoId'];
   $id2 = $_GET['userId'];
+  $id3 = $_GET['nomRec'];
 
-  echo "_" . $id1;
 }
 
 
@@ -30,6 +30,7 @@ if (!empty($_POST))
     $hfin = test_input($_POST["hFin"]);
     $show1 = test_input($_POST["id1"]);
     $show2 = test_input($_POST["id2"]);
+    $show3 = test_input($_POST["id3"]);
   }
 
 
@@ -39,16 +40,21 @@ if (!empty($_POST))
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql= "INSERT INTO solicitudes (idsolicitante, idrecurso, idsolicitado, fInicio, fFin, hInicio, hFin, respuesta)
-  VALUES ('" .$_SESSION["session"] ."','". $show1 ."', '" . $show2 . "', '". $finicio ."','". $ffin ."', '". $hinicio ."', '". $hfin ."', '" ."". "')";
+  $sql= "INSERT INTO solicitudes (idsolicitante, nombreRec, idrecurso, idsolicitado, fInicio, fFin, hInicio, hFin, respuesta)
+  VALUES ('" .$_SESSION["session"] ."','". $show3 ."' ,'". $show1 ."', '" . $show2 . "', '". $finicio ."','". $ffin ."', '". $hinicio ."', '". $hfin ."', '" ."". "')";
   $result = $conn->query($sql);
 
   $conn->close();
+  $Inserted = TRUE;
+}
+if ($Inserted) {
+  header('Location: dashboard.php');
 }
 ?>
 <form method="post" action="<?= $_SERVER['PHP_SELF']?>" enctype="multipart/form-data">
-  <input type="text" value="<?php echo $id1; ?>" name="id1"/>
-  <input type="text" value="<?php echo $id2; ?>" name="id2"/>
+  <input type="hidden" value="<?php echo $id1; ?>" name="id1"/>
+  <input type="hidden" value="<?php echo $id2; ?>" name="id2"/>
+  <input type="hidden" value="<?php echo $id3; ?>" name="id3"/>
 
   <div class="form-group">
     <label for="exampleFormControlInput1">Seleccione fecha y hora para el uso del recurso</label></br>

@@ -12,7 +12,6 @@
   $aidi = $_SESSION["session"];
 
   $sql= "SELECT id, idsolicitante, idrecurso, fInicio, fFin, hInicio, hFin, respuesta FROM solicitudes WHERE idsolicitado='" . $aidi . "'";
-  echo $sql;
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {

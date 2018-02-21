@@ -1,6 +1,6 @@
 <?php
   include "./indexlogged.php";
-  echo $_SESSION["session"];
+  //echo $_SESSION["session"];
 ?>
 <h4> Solicitudes </h4>
 

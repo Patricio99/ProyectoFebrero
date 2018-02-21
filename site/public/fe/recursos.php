@@ -9,18 +9,18 @@ $nombre = $idprod = "";
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql= "SELECT id, nombre FROM recursos WHERE userid='" . $_SESSION["session"] . "'";
+  $sql= "SELECT id, nombre, recursoid FROM recursos WHERE userid='" . $_SESSION["session"] . "'";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $nombre = $row["nombre"];
-        $idprod = $row["id"];
+        $idprod = $row["recursoid"];
         ?>
             <div class="card" style="width: 20rem;">
               <div class="card-block">
                 <h3 class="card-title"><?php echo $nombre; ?></h3>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="deletesource.php?id=<?php echo $idprod; ?>" class="btn btn-link">Eliminar recurso</a>
+                <a href="deletesource.php?id=<?php echo $idprod; ?>&nomRec=<?php echo $nombre; ?>" class="btn btn-link">Eliminar recurso</a>
               </div>
             </div>
                 <?php

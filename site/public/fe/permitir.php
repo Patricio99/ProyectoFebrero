@@ -14,4 +14,9 @@ if ($conn->connect_error) {
 $sql = "UPDATE solicitudes SET respuesta='". $permitido ."' WHERE id='$urlid[0]'";
 $result = $conn->query($sql);
 
+$conn->close();
+
+header('Location: dashboard.php');
+
+
 ?>
