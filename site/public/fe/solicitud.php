@@ -47,7 +47,7 @@ if (!empty($_POST))
   $conn->close();
   $Inserted = TRUE;
 }
-if ($Inserted) {
+if (isset($Inserted) && $Inserted) {
   header('Location: dashboard.php');
 }
 ?>
@@ -58,8 +58,8 @@ if ($Inserted) {
 
   <div class="form-group">
     <label for="exampleFormControlInput1">Seleccione fecha y hora para el uso del recurso</label></br>
-    <input type="date" name="fInicio" min="<?php date('Y-m-d') ?>">
-    <input type="date" name="fFin" max="<?php date('Y-m-d', strtotime(date('Y-m-d'). ' + 30 days')) ?>">
+    <input type="date" name="fInicio" min="2018-02-22"/>
+    <input type="date" name="fFin" max="2018-03-23"/>
   </div>
   <div class="form-group">
     <input type="time" name="hInicio">

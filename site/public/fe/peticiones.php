@@ -22,7 +22,9 @@
     $fFin = $row["fFin"];
     $hIni = $row["hInicio"];
     $hFin = $row["hFin"];
+    if(isset($row["respuesta"])){
     $respuesta = $row["respuesta"];
+  }
 
     ?>
     <div class="card" style="width: 20rem;">
@@ -52,7 +54,7 @@
         <?php
           if ($respuesta == "") {
             ?>
-            <a href="permitir.php?id=<?php echo $id; ?>" class="btn btn-link">Permitir</a>
+            <a href="permitir.php?id=<?php echo $id; ?>&idRec=<?php echo $idrec; ?>&fechaI=<?php echo $fIni; ?>&fechaF=<?php echo $fFin; ?>&horaI=<?php echo $hIni; ?>&horaF=<?php echo $hFin; ?>" class="btn btn-link">Permitir</a>
             <a href="denegar.php?id=<?php echo $id; ?>" class="btn btn-link">Denegar</a>
             <?php
           }else {
