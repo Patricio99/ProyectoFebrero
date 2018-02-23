@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 16-02-2018 a las 14:45:57
--- Versión del servidor: 5.7.9
--- Versión de PHP: 5.6.16
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 23, 2018 at 11:22 AM
+-- Server version: 5.7.19
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dbproyectofebrero`
+-- Database: `dbproyectofebrero`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `amigos`
+-- Table structure for table `amigos`
 --
 
 DROP TABLE IF EXISTS `amigos`;
@@ -35,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `amigos` (
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `amigos`
+-- Dumping data for table `amigos`
 --
 
 INSERT INTO `amigos` (`id`, `iduser`, `idfriend`) VALUES
@@ -44,7 +46,7 @@ INSERT INTO `amigos` (`id`, `iduser`, `idfriend`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `recursos`
+-- Table structure for table `recursos`
 --
 
 DROP TABLE IF EXISTS `recursos`;
@@ -54,26 +56,26 @@ CREATE TABLE IF NOT EXISTS `recursos` (
   `userid` varchar(50) NOT NULL,
   `recursoid` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `recursos`
+-- Dumping data for table `recursos`
 --
 
 INSERT INTO `recursos` (`id`, `nombre`, `userid`, `recursoid`) VALUES
 (22, 'Computadora', '5a86e6a354d3a', '5a86e6e0754fd'),
-(23, 'Celular', '5a86e6a354d3a', '5a86e6f163423'),
-(24, 'Play', '5a86e6b0c485e', '5a86e6fdbfb6f');
+(23, 'Celular', '5a86e6a354d3a', '5a86e6f163423');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `solicitudes`
+-- Table structure for table `solicitudes`
 --
 
 DROP TABLE IF EXISTS `solicitudes`;
 CREATE TABLE IF NOT EXISTS `solicitudes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreRec` varchar(50) NOT NULL,
   `idsolicitante` varchar(50) NOT NULL,
   `idrecurso` varchar(50) NOT NULL,
   `idsolicitado` varchar(50) NOT NULL,
@@ -83,22 +85,20 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
   `hFin` varchar(20) NOT NULL,
   `respuesta` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `solicitudes`
+-- Dumping data for table `solicitudes`
 --
 
-INSERT INTO `solicitudes` (`id`, `idsolicitante`, `idrecurso`, `idsolicitado`, `fInicio`, `fFin`, `hInicio`, `hFin`, `respuesta`) VALUES
-(9, '5a86e6b0c485e', '', '', '2018-02-17', '2018-02-17', '12:30', '14:30', ''),
-(10, '5a86e6b0c485e', '', '', '2018-02-17', '2018-02-17', '01:25', '02:26', ''),
-(11, '5a86e6b0c485e', '', '', '2018-02-17', '2018-02-17', '02:30', '02:45', ''),
-(12, '5a86e6b0c485e', '5a86e6e0754fd', '5a86e6a354d3a', '2018-02-17', '2018-02-17', '11:30', '12:30', 'Permitido');
+INSERT INTO `solicitudes` (`id`, `nombreRec`, `idsolicitante`, `idrecurso`, `idsolicitado`, `fInicio`, `fFin`, `hInicio`, `hFin`, `respuesta`) VALUES
+(13, 'Celular', '5a86e6b0c485e', '5a86e6f163423', '5a86e6a354d3a', '2018-02-19', '2018-02-19', '00:30', '03:50', 'Denegado'),
+(12, 'Computadora', '5a86e6b0c485e', '5a86e6e0754fd', '5a86e6a354d3a', '2018-02-17', '2018-02-17', '11:30', '12:30', 'Permitido');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -113,12 +113,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `mail`, `contrasena`, `unid`) VALUES
 (23, 'papa', 'papa', 'papa@papa.com', 'papa', '5a86e6a354d3a'),
 (24, 'hijo', 'hijo', 'hijo@hijo.com', 'hijo', '5a86e6b0c485e');
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
