@@ -19,7 +19,7 @@ $nombre = $idprod = "";
             <div class="card" style="width: 20rem;">
               <div class="card-block">
                 <h3 class="card-title"><?php echo $nombre; ?></h3>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text">Id del recurso: <?php echo $idprod; ?></p>
                 <a href="deletesource.php?id=<?php echo $idprod; ?>&nomRec=<?php echo $nombre; ?>" class="btn btn-link">Eliminar recurso</a>
               </div>
             </div>
